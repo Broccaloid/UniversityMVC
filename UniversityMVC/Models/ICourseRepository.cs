@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UniversityMVC.Models
 {
-    interface ICourseRepository
+    public interface ICourseRepository : IRepository<Course>
     {
     }
 }

@@ -7,9 +7,9 @@ namespace UniversityMVC.Models
 {
     interface IUnitOfWork
     {
-        IRepository<Course> Courses { get; }
-        IRepository<Group> Groups { get; }
-        IRepository<Student> Students { get; }
+        ICourseRepository Courses { get; }
+        IGroupRepository Groups { get; }
+        IStudentRepository Students { get; }
 
         public void Save();
     }

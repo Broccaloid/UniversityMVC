@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace UniversityMVC.Models
 {
-    interface IGroupRepository
+    public interface IGroupRepository : IRepository<Group>
     {
+        IEnumerable<Group> GetByCourse(int courseId);
     }
 }

@@ -12,21 +12,26 @@ namespace UniversityMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private UniversityContext db;
-        public HomeController(ILogger<HomeController> logger, UniversityContext context)
+        private UnitOfWork UnitOfWork { get; set; }
+        public HomeController(ILogger<HomeController> logger, UnitOfWork unitOfWork)
         {
             _logger = logger;
-            db = context;
+            UnitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            return View(db.Courses.ToList());
+            return View(UnitOfWork.Courses.GetAll());
         }
 
-        public IActionResult SelectGroup(int? groupId)
+        public IActionResult SelectedCourse(int courseId)
         {
-            return View();
+            return View(UnitOfWork.Groups.GetByCourse(courseId));
+        }
+
+        public IActionResult SelectedGroup(int groupId)
+        {
+            return View(UnitOfWork.Students.GetByGroup(groupId));
         }
 
         public IActionResult Privacy()

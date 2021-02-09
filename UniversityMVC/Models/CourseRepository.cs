@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace UniversityMVC.Models
 {
-    public class CourseRepository
+    public class CourseRepository : Repository<Course>, ICourseRepository
     {
+        public CourseRepository(UniversityContext context): base(context) { }
     }
 }
