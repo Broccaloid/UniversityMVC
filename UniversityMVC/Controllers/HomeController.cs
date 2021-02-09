@@ -12,8 +12,9 @@ namespace UniversityMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private UnitOfWork UnitOfWork { get; set; }
-        public HomeController(ILogger<HomeController> logger, UnitOfWork unitOfWork)
+        private IUnitOfWork UnitOfWork { get; set; }
+
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             UnitOfWork = unitOfWork;

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UniversityMVC.Models
 {
-    interface IUnitOfWork
+    public interface IUnitOfWork
     {
         ICourseRepository Courses { get; }
         IGroupRepository Groups { get; }

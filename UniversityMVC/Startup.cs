@@ -24,10 +24,10 @@ namespace UniversityMVC
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<UniversityContext>(options => options.UseSqlServer(connection));
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddControllersWithViews();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
