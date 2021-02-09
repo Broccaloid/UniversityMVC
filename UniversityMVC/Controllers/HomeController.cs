@@ -12,13 +12,19 @@ namespace UniversityMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private UniversityContext db;
+        public HomeController(ILogger<HomeController> logger, UniversityContext context)
         {
             _logger = logger;
+            db = context;
         }
 
         public IActionResult Index()
+        {
+            return View(db.Courses.ToList());
+        }
+
+        public IActionResult SelectGroup(int? groupId)
         {
             return View();
         }

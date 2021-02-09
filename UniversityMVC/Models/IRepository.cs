@@ -5,10 +5,7 @@ using System.Threading.Tasks;
 
 namespace UniversityMVC.Models
 {
-    public class Group
+    interface IRepository
     {
-        public int Id { set; get; }
-        public string Name { set; get; }
-        public Course Course { set; get; }
     }
 }
