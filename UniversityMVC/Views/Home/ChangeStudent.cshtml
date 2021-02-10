@@ -1,0 +1,23 @@
+﻿@model Student
+@{
+    ViewData["Title"] = "Student Change";
+}
+<h2>Введите новые данные для студента @Model.FirstName @Model.LastName:</h2>
+<form asp-action="ChangeStudent" asp-controller="Home" asp-antiforgery="true">
+    <div>
+        <input type="hidden" value="@Model.Id" name="id" />
+        <div>
+            <label asp-for="FirstName">Имя</label>
+            <input type="text" asp-for="FirstName" />
+            <span asp-validation-for="FirstName"></span>
+        </div>
+        <div>
+            <label asp-for="LastName">Фамилия</label>
+            <input type="text" asp-for="LastName" />
+            <span asp-validation-for="LastName"></span>
+        </div>
+        <div>
+            <input type="submit" value="Сохранить" />
+        </div>
+    </div>
+</form>

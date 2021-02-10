@@ -1,0 +1,18 @@
+﻿@model Group
+@{
+    ViewData["Title"] = "Group Change";
+}
+<h2>Введите новое название для группы @Model.Name:</h2>
+<form asp-action="ChangeGroup" asp-controller="Home" asp-antiforgery="true">
+    <div>
+        <input type="hidden" value="@Model.Id" name="id" />
+        <div>
+            <label asp-for="Name">Название</label>
+            <input type="text" asp-for="Name" />
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div>
+            <input type="submit" value="Сохранить" />
+        </div>
+    </div>
+</form>

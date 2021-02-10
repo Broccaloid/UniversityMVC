@@ -1,5 +1,22 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<UniversityMVC.Models.Student>
 @{
+    ViewData["Title"] = "Home Page";
 }
+
+<h3>Список студентов группы @ViewBag.GroupName:</h3>
+<table class="table-condensed">
+    <tr>
+        <td>ID</td>
+        <td>Имя</td>
+        <td>Фамилия</td>
+    </tr>
+    @foreach (var student in Model)
+    {
+        <tr>
+            <td>@student.Id</td>
+            <td>@student.FirstName</td>
+            <td>@student.LastName</td>
+            <td><a asp-action="ChangeStudent" asp-controller="Home" asp-route-id="@student.Id">Изменить имя</a></td>
+        </tr>
+    }
+</table>

@@ -25,14 +25,45 @@ namespace UniversityMVC.Controllers
             return View(UnitOfWork.Courses.GetAll());
         }
 
-        public IActionResult SelectedCourse(int courseId)
+        public IActionResult SelectedCourse(int id)
         {
-            return View(UnitOfWork.Groups.GetByCourse(courseId));
+            ViewBag.CourseName = $"{UnitOfWork.Courses.GetById(id).Name}";
+            return View(UnitOfWork.Groups.GetByCourse(id));
         }
 
-        public IActionResult SelectedGroup(int groupId)
+        public IActionResult SelectedGroup(int id)
         {
-            return View(UnitOfWork.Students.GetByGroup(groupId));
+            ViewBag.GroupName = $"{UnitOfWork.Groups.GetById(id).Name}";
+            return View(UnitOfWork.Students.GetByGroup(id));
+        }
+
+        [HttpGet]
+        public IActionResult ChangeGroup(int id)
+        {
+            return View(UnitOfWork.Groups.GetById(id));
+        }
+
+        [HttpPost]
+        public IActionResult ChangeGroup(string name, int id)
+        {
+            UnitOfWork.Groups.GetById(id).Name = name;
+            UnitOfWork.Save();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult ChangeStudent(int id)
+        {
+            return View(UnitOfWork.Students.GetById(id));
+        }
+
+        [HttpPost]
+        public IActionResult ChangeStudent(string firstName, string lastName, int id)
+        {
+            UnitOfWork.Students.GetById(id).FirstName = firstName;
+            UnitOfWork.Students.GetById(id).LastName = lastName;
+            UnitOfWork.Save();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()

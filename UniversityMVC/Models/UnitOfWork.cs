@@ -22,9 +22,9 @@ namespace UniversityMVC.Models
             Students = new StudentRepository(context);
         }
 
-        public async void Save()
+        public void Save()
         {
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
     }
 }
