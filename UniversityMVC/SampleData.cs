@@ -6,7 +6,7 @@ using UniversityMVC.Models;
 
 namespace UniversityMVC
 {
-    public class SampleData
+    public static class SampleData
     {
         public static void Initialize(UniversityContext context)
         {
@@ -54,13 +54,13 @@ namespace UniversityMVC
                         Id = 1,
                         Name = "C-101",
                         Course = context.Courses.Find(2)
-                    }, 
+                    },
                     new Group
                     {
                         Id = 2,
                         Name = "C-102",
                         Course = context.Courses.Find(1)
-                    }, 
+                    },
                     new Group
                     {
                         Id = 3,
