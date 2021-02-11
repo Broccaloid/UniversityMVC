@@ -11,8 +11,8 @@ namespace UniversityMVC.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { set; get; }
-        [Required(ErrorMessage = "Название не указана")]
-        [StringLength(50, MinimumLength = 1, ErrorMessage = "Название укзано некоректно")]
+        [Required(ErrorMessage = "Name is required")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "Incorrect Name")]
         public string Name { set; get; }
         public Course Course { set; get; }
     }

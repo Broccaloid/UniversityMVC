@@ -11,10 +11,10 @@ namespace UniversityMVC.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
-        [Required(ErrorMessage = "Имя не указано")]
+        [Required(ErrorMessage = "First name is required")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Имя укзано некоректно")]
         public string FirstName { get; set; }
-        [Required(ErrorMessage = "Фамилия не указана")]
+        [Required(ErrorMessage = "Last name is required")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Фамилия укзана некоректно")]
         public string LastName { get; set; }
         public Group Group { get; set; }

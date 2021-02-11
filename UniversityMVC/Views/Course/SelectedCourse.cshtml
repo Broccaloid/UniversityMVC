@@ -1,0 +1,21 @@
+﻿@model IEnumerable<UniversityMVC.Models.Group>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h3>Группы курса @ViewBag.CourseName:</h3>
+<table class="table-condensed">
+    <tr>
+        <td>ID</td>
+        <td>Название</td>
+    </tr>
+    @foreach (var group in Model)
+    {
+        <tr>
+            <td>@group.Id</td>
+            <td><a asp-controller="Group" asp-action="SelectedGroup" asp-route-id="@group.Id">@group.Name</a></td>
+            <td><a asp-controller="Group" asp-action="ChangeGroup" asp-route-id="@group.Id">Изменить название</a></td>
+            <td><a asp-controller="Group" asp-action="DeleteGroup" asp-route-id="@group.Id">Удалить</a></td>
+        </tr>
+    }
+</table>
