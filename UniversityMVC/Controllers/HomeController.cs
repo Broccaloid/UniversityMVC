@@ -94,9 +94,18 @@ namespace UniversityMVC.Controllers
         [HttpPost, ActionName("DeleteStudent")]
         public IActionResult ConfirmDeleteStudent(int id)
         {
-            UnitOfWork.Students.Remove(UnitOfWork.Students.GetById(id));
-            UnitOfWork.Save();
-            return RedirectToAction("Index");
+            try
+            {
+                UnitOfWork.Students.Remove(UnitOfWork.Students.GetById(id));
+                UnitOfWork.Save();
+            }
+            catch (Exception)
+            {
+                ViewBag.Message = "Во время выполнения запроса произошла ошибка! Изменения не были внесены! ";
+                return View("ReturnHomePage");
+            }
+            ViewBag.Message = "Студент был удалён";
+            return View("ReturnHomePage");
         }
 
         [HttpGet]
@@ -126,14 +135,17 @@ namespace UniversityMVC.Controllers
             }
             catch (Microsoft.EntityFrameworkCore.DbUpdateException)
             {
-                return Content("Невозможно удалить группу, в которой есть студенты!");
+                ViewBag.Message = "Невозможно удалить группу, в которой есть студенты!";
+                return View("ReturnHomePage");
             }
             catch (Exception)
             {
-                return Content("Во время выполнения запроса произошла ошибка! Изменения не были внесены! ");
+                ViewBag.Message = "Во время выполнения запроса произошла ошибка! Изменения не были внесены! ";
+                return View("ReturnHomePage");
             }
 
-            return RedirectToAction("Index");
+            ViewBag.Message = "Группа была удалена!";
+            return View("ReturnHomePage");
         }
 
         public IActionResult Privacy()
