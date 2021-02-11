@@ -7,6 +7,6 @@ namespace UniversityMVC.Models
 {
     public interface IStudentRepository : IRepository<Student>
     {
-        IEnumerable<Student> GetByGroup(int groupId);
+        IEnumerable<Student> GetByGroup(int? groupId);
     }
 }

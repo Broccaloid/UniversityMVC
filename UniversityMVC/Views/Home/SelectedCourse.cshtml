@@ -15,6 +15,7 @@
             <td>@group.Id</td>
             <td><a asp-controller="Home" asp-action="SelectedGroup" asp-route-id="@group.Id">@group.Name</a></td>
             <td><a asp-controller="Home" asp-action="ChangeGroup" asp-route-id="@group.Id">Изменить название</a></td>
+            <td><a asp-controller="Home" asp-action="DeleteGroup" asp-route-id="@group.Id">Удалить</a></td>
         </tr>
     }
 </table>

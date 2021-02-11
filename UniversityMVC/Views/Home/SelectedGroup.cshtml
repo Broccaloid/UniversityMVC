@@ -17,6 +17,7 @@
             <td>@student.FirstName</td>
             <td>@student.LastName</td>
             <td><a asp-action="ChangeStudent" asp-controller="Home" asp-route-id="@student.Id">Изменить имя</a></td>
+            <td><a asp-action="DeleteStudent" asp-controller="Home" asp-route-id="@student.Id">Удалить</a></td>
         </tr>
     }
 </table>

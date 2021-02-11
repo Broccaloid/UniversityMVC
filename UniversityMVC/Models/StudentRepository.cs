@@ -16,7 +16,7 @@ namespace UniversityMVC.Models
         }
         public StudentRepository(UniversityContext context) : base(context) { }
 
-        public IEnumerable<Student> GetByGroup(int groupId)
+        public IEnumerable<Student> GetByGroup(int? groupId)
         {
             return UniversityContext.Students.Where(s => s.Group.Id == groupId);
         }
