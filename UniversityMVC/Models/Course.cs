@@ -11,7 +11,6 @@ namespace UniversityMVC.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
-        [Required(ErrorMessage = "Название не указано")]
         public string Name { get; set; }
         public string Description { get; set; }
     }
