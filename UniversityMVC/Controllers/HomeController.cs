@@ -22,6 +22,7 @@ namespace UniversityMVC.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Index method was called");
             return View(UnitOfWork.Courses.GetAll());
         }
 

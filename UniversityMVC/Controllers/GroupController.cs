@@ -22,8 +22,10 @@ namespace UniversityMVC.Controllers
         {
             if (id == null)
             {
+                _logger.LogWarning("SelectedGroup method was called but got no id");
                 return NotFound();
             }
+            _logger.LogInformation("SelectedGroup method was called with an id = {groupId}", id);
             ViewBag.GroupName = $"{UnitOfWork.Groups.GetById(id).Name}";
             return View(UnitOfWork.Students.GetByGroup(id));
         }
@@ -31,6 +33,7 @@ namespace UniversityMVC.Controllers
         [HttpGet]
         public IActionResult ChangeGroup(int id)
         {
+            _logger.LogInformation("ChangeGroup method was called with an id = {groupId}", id);
             return View(UnitOfWork.Groups.GetById(id));
         }
 
@@ -39,6 +42,7 @@ namespace UniversityMVC.Controllers
         {
             UnitOfWork.Groups.GetById(id).Name = name;
             UnitOfWork.Save();
+            _logger.LogInformation("Group's (id = {groupId}) name was changed to {newName}", id, name);
             return RedirectToAction("Index", "Home");
         }
 
@@ -47,14 +51,18 @@ namespace UniversityMVC.Controllers
         {
             if (id == null)
             {
+                _logger.LogWarning("DeleteGroup method was called but got no id");
                 return NotFound();
             }
             try
             {
+
+                _logger.LogInformation("DeleteGroup method was called with an id = {groupId}", id);
                 return View(UnitOfWork.Groups.GetById(id));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "An exception occurred");
                 return NotFound();
             }
         }
@@ -64,20 +72,24 @@ namespace UniversityMVC.Controllers
         {
             try
             {
+                _logger.LogInformation("Attempt to delete a group with an id = {groupId}", id);
                 UnitOfWork.Groups.Remove(UnitOfWork.Groups.GetById(id));
                 UnitOfWork.Save();
             }
-            catch (Microsoft.EntityFrameworkCore.DbUpdateException)
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
             {
+                _logger.LogError(ex, "Attempt failed");
                 ViewBag.Message = "Невозможно удалить группу, в которой есть студенты!";
                 return View("ReturnHomePage");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Attempt failed");
                 ViewBag.Message = "Во время выполнения запроса произошла ошибка! Изменения не были внесены! ";
                 return View("ReturnHomePage");
             }
 
+            _logger.LogInformation("Group was successfully deleted");
             ViewBag.Message = "Группа была удалена!";
             return View("ReturnHomePage");
         }

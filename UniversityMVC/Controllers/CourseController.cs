@@ -22,8 +22,10 @@ namespace UniversityMVC.Controllers
         {
             if (id == null)
             {
+                _logger.LogWarning("SelectedCourse method was called but got no id");
                 return NotFound();
             }
+            _logger.LogInformation("SelectedCourse method was called with id = {courseId}", id);
             ViewBag.CourseName = $"{UnitOfWork.Courses.GetById(id).Name}";
             return View(UnitOfWork.Groups.GetByCourse(id));
         }

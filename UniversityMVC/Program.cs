@@ -22,6 +22,8 @@ namespace UniversityMVC
 
                 try
                 {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogInformation("DB was seeded");
                     var context = services.GetRequiredService<UniversityContext>();
                     SampleData.Initialize(context);
                 }
